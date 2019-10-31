@@ -1,0 +1,7 @@
+extends ../../layout/default.pug
+
+block content
+  h1 #{result.did} 属性值
+  ul
+    each val, index in result.data
+      li= index + ' = ' + val

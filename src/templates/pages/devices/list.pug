@@ -1,0 +1,8 @@
+extends ../../layout/default.pug
+
+block content
+  h1 设备列表
+  ul
+    each d in result
+      li
+        a(href='/devices/' + d.did) #{d.name}

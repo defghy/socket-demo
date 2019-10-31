@@ -1,0 +1,8 @@
+extends ../../layout/default.pug
+
+block content
+  h1 #{result.did} 属性列表
+  ul
+    each d in result.data
+      li
+        a(href='/devices/' + result.did + '/attributes/' + d.attr) #{d.name}
