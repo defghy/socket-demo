@@ -1,5 +1,5 @@
 module.exports = async (ctx, next) => {
-  global.pushServer.sockets.emit('全局消息', {
+  global.pushServer && global.pushServer.sockets.emit('gl_msg', {
     data: '测试数据'
   });
   ctx.body = {
