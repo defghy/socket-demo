@@ -8,7 +8,12 @@ const start = function({app, server}) {
   });
   global.pushServer = ws;
 
-  ws.set('origins', '*');
+  ws.origins((origin, callback) => {
+    if (!origin.includes('yunshanmeicai.com')) {
+      return callback('origin not allowed', false);
+    }
+    callback(null, true);
+  });
   ws.on('connection', (socket) => {
 
     const hotelid = socket.hotelid || '';
