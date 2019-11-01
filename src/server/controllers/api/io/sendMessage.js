@@ -1,7 +1,12 @@
 module.exports = async (ctx, next) => {
-  global.pushServer && global.pushServer.sockets.emit('gl_msg', {
-    data: '测试数据'
-  });
+  if (ctx.query.userId) {
+    global.sockets[ctx.query.userId].emit('message', `用户${ctx.query.userId}收消息`);
+  } else {
+    global.pushServer && global.pushServer.sockets.emit('message', {
+      data: '全体用户收到消息'
+    });
+  }
+
   ctx.body = {
     ret: 1,
     data: `消息发送成功`

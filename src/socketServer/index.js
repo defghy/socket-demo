@@ -1,5 +1,7 @@
 const socketio = require('socket.io');
 
+const sockets = global.sockets = {};
+
 const start = function({app, server}) {
 
   const ws = socketio(server, {
@@ -16,8 +18,10 @@ const start = function({app, server}) {
   });
   ws.on('connection', (socket) => {
 
-    const hotelid = socket.hotelid || '';
-    const roomlist = socket.roomlist || [];
+    const { id } = socket;
+    const { userId } = socket.handshake.query;
+
+    sockets[userId] = socket;
 
     socket.on('event', (data) => {
       console.log('event: ', data);
