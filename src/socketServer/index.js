@@ -8,7 +8,7 @@ const start = function({app, server}) {
   });
   global.pushServer = ws;
 
-  ws.set('origins', 'http://dev.kf.test.yunshanmeicai.com:8079');
+  ws.set('origins', '*');
   ws.on('connection', (socket) => {
 
     const hotelid = socket.hotelid || '';
