@@ -1,6 +1,6 @@
 const socketio = require('socket.io');
 
-const start = function(app, server) {
+const start = function({app, server}) {
 
   const ws = socketio(server, {
     path: '/push',
@@ -8,6 +8,7 @@ const start = function(app, server) {
   });
   global.pushServer = ws;
 
+  ws.set('origins', 'http://dev.kf.test.yunshanmeicai.com:8079');
   ws.on('connection', (socket) => {
 
     const hotelid = socket.hotelid || '';
