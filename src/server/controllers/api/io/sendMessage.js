@@ -1,6 +1,6 @@
 module.exports = async (ctx, next) => {
   if (ctx.query.userId) {
-    global.sockets[ctx.query.userId].emit('message', `用户${ctx.query.userId}收消息`);
+    global.pushServer.to([ctx.query.userId]).emit('message', `用户${ctx.query.userId}收消息`);
   } else {
     global.pushServer && global.pushServer.sockets.emit('message', {
       data: '全体用户收到消息'

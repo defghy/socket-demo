@@ -1,7 +1,5 @@
 const socketio = require('socket.io');
 
-const sockets = global.sockets = {};
-
 const start = function({app, server}) {
 
   const ws = socketio(server, {
@@ -21,7 +19,8 @@ const start = function({app, server}) {
     const { id } = socket;
     const { userId } = socket.handshake.query;
 
-    sockets[userId] = socket;
+    // 分组socket
+    socket.join(userId);
 
     socket.on('event', (data) => {
       console.log('event: ', data);
