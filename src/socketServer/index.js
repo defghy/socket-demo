@@ -6,27 +6,31 @@ const start = function({app, server}) {
     path: '/push',
     pingInterval: 30000
   });
-  global.pushServer = ws;
-
+  global.push = ws;
   ws.origins((origin, callback) => {
     if (!origin.includes('yunshanmeicai.com')) {
       return callback('origin not allowed', false);
     }
     callback(null, true);
   });
-  ws.on('connection', (socket) => {
 
-    const { id } = socket;
-    const { userId } = socket.handshake.query;
+  const platforms = ['kf'];
+  platforms.forEach(pname => {
+    const plat = ws.of('/' + pname);
+    plat.on('connection', (socket) => {
 
-    // 分组socket
-    socket.join(userId);
+      const { id } = socket;
+      const { userId } = socket.handshake.query;
 
-    socket.on('event', (data) => {
-      console.log('event: ', data);
-    });
-    socket.on('disconnect', () => {
-      console.log('web socket disconnect');
+      // 分组socket
+      socket.join(userId);
+
+      socket.on('event', (data) => {
+        console.log('event: ', data);
+      });
+      socket.on('disconnect', () => {
+        console.log('web socket disconnect');
+      });
     });
   });
 
