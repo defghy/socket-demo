@@ -1,6 +1,10 @@
 const socketio = require('socket.io');
 const redisAdapter = require('./redisAdapter');
 
+const {
+  ENV
+} = process.env;
+
 const start = function({app, server}) {
 
   const ws = socketio(server, {
@@ -10,8 +14,9 @@ const start = function({app, server}) {
   global.push = ws;
 
   // adapter
-  ws.adapter(redisAdapter);
-
+  if (ENV !== 'local') {
+    ws.adapter(redisAdapter);
+  }
 
   // 设置跨域cors
   ws.origins((origin, callback) => {

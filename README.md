@@ -24,6 +24,6 @@ curl http://localhost:8713/api/io/sendMessage?platform=kf  // all kf
 ## dev pm2
 ```
 1. 启动redis(redis-server)
-2. npm run start:test
+2. npm run start
 其他同dev
 ```
