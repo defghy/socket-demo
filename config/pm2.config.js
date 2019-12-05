@@ -7,7 +7,7 @@ module.exports = {
   "autorestart": false,
   "node_args": [],
   "args": [],
-  "watch": "../",
+  "watch": "./",
   "watch_delay": 1000,
   "merge_logs": true,
   "log_date_format": "YYYY-MM-DD hh:mm:ss.SSS",
