@@ -1,7 +1,8 @@
 module.exports = async (ctx, next) => {
-  const platform = '/kf';
-  if (ctx.query.userId) {
-    global.push.of(platform).to([ctx.query.userId]).emit('message', `用户${ctx.query.userId}收消息`);
+  let { userId, platform } = ctx.query || {};
+  platform = platform || '/kf';
+  if (userId) {
+    global.push.of(platform).to([userId]).emit('message', `用户${userId}收消息`);
   } else {
     global.push.of(platform).emit('message', {
       data: '全体用户收到消息'

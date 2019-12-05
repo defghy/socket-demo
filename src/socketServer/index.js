@@ -8,7 +8,7 @@ const start = function({app, server}) {
   });
   global.push = ws;
   ws.origins((origin, callback) => {
-    if (!origin.includes('yunshanmeicai.com')) {
+    if (!origin.includes('local')) {
       return callback('origin not allowed', false);
     }
     callback(null, true);
