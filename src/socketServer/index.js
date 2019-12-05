@@ -14,7 +14,7 @@ const start = function({app, server}) {
   global.push = ws;
 
   // adapter
-  if (ENV != 'local') {
+  if (true) {
     ws.adapter(redisAdapter);
   }
 
@@ -34,6 +34,7 @@ const start = function({app, server}) {
 
       const { id } = socket;
       const { userId } = socket.handshake.query;
+      console.log(`${userId}: ${process.pid}`);
 
       // 分组socket
       socket.join(userId);
