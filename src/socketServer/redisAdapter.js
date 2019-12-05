@@ -7,7 +7,9 @@ const {
   REDIS_PASSWORD
 } = process.env;
 
-const pub = redis.createClient(REDIS_PORT, REDIS_HOST, { auth_pass: REDIS_PASSWORD });
-const sub = redis.createClient(REDIS_PORT, REDIS_HOST, { auth_pass: REDIS_PASSWORD });
+// const pub = redis.createClient(REDIS_PORT, REDIS_HOST, { password: REDIS_PASSWORD });
+// const sub = redis.createClient(REDIS_PORT, REDIS_HOST, { password: REDIS_PASSWORD });
 
-module.exports = adapter({ pubClient: pub, subClient: sub });
+module.exports = {
+  redisAdapter: adapter({ host: REDIS_HOST, port: REDIS_PORT })
+};

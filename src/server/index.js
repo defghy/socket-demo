@@ -14,7 +14,6 @@ process.on('uncaughtException', function(error) {
   console.error(error);
 });
 
-debugger;
 // 中间件
 app.use(static(path.join(__dirname, '../../static')));
 app.use(bodyParser());

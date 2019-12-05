@@ -1,5 +1,5 @@
 const socketio = require('socket.io');
-const redisAdapter = require('./redisAdapter');
+const { redisAdapter } = require('./redisAdapter');
 
 const {
   ENV
@@ -14,7 +14,7 @@ const start = function({app, server}) {
   global.push = ws;
 
   // adapter
-  if (ENV !== 'local') {
+  if (ENV != 'local') {
     ws.adapter(redisAdapter);
   }
 

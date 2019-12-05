@@ -22,3 +22,4 @@ yarn-error.log*
 
 mock/*
 !mock/notice.getUnreadNotice.json
+dump.rdb
