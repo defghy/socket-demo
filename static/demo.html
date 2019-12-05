@@ -27,6 +27,7 @@
     const platform = 'kf';
     var socket = io(`http://localhost:8713/${platform}`, {
       path: '/push',
+      transports: ['websocket'],
       query: {
         userId
       }
