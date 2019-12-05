@@ -1,4 +1,5 @@
 const socketio = require('socket.io');
+const redisAdapter = require('./redisAdapter');
 
 const start = function({app, server}) {
 
@@ -7,6 +8,12 @@ const start = function({app, server}) {
     pingInterval: 30000
   });
   global.push = ws;
+
+  // adapter
+  ws.adapter(redisAdapter);
+
+
+  // 设置跨域cors
   ws.origins((origin, callback) => {
     if (!origin.includes('local')) {
       return callback('origin not allowed', false);
@@ -14,6 +21,7 @@ const start = function({app, server}) {
     callback(null, true);
   });
 
+  // 区分平台
   const platforms = ['kf'];
   platforms.forEach(pname => {
     const plat = ws.of('/' + pname);
