@@ -34,16 +34,14 @@ const start = function({app, server}) {
 
       const { id } = socket;
       const { userId } = socket.handshake.query;
-      console.log(`${userId}: ${process.pid}`);
 
       // 分组socket
       socket.join(userId);
 
-      socket.on('event', (data) => {
-        console.log('event: ', data);
-      });
+      // socket.on('event', (data) => {
+      // });
       socket.on('disconnect', () => {
-        console.log('web socket disconnect');
+        console.log(`WEB_SOCKET_DISCONNECT: ${pname}_${userId}`);
       });
     });
   });
