@@ -25,7 +25,7 @@
 
     const userId = Math.random() > 0.5? 1: 2; // 模拟2个用户
     const platform = 'kf';
-    var socket = io(`http://localhost:8713/${platform}`, {
+    var socket = io(`${location.origin}/${platform}`, {
       path: '/push',
       transports: ['websocket'],
       query: {
