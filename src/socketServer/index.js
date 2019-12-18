@@ -20,7 +20,7 @@ const start = function({app, server}) {
 
   // 设置跨域cors
   ws.origins((origin, callback) => {
-    if (!origin.includes('local')) {
+    if (!origin.includes('yunshan')) {
       return callback('origin not allowed', false);
     }
     callback(null, true);
